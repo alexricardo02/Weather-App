@@ -7,9 +7,9 @@ pip install flask</code>
 <h1>Version 1.1</h1>
 Features:
 <ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
+  <li>City recognition using latitude and longitude</li>
+  <li>Extraction of temperature data of certain Cities using latitude and longitude</li>
+  <li>Creation of a database for the purpose of saving extracted data</li>
 </ul>
 <h1>Version 1.2</h1>
 Features:
