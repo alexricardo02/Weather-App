@@ -5,8 +5,7 @@ pip install pysqlite3
 pip install flask</code>
 
 <h1>Version 1.1</h1>
-Features</b>
-</b>
+Features:
 <ul>
   <li>Coffee</li>
   <li>Tea</li>
