@@ -37,7 +37,7 @@ def save_weather_data_to_db(city, latitude, longitude, temperature, humidity, wi
     cursor.execute("""
         INSERT INTO extrawetter (city, latitude, longitude, temperature, humidity, wind_speed, uv_index)
         VALUES (?, ?, ?, ?, ?, ?, ?)               
-    """, (city, latitude, longitude, temperature, humidity, wind_speed, uv_index))
+    """, (city.encode('utf-8').decode('utf-8'), latitude, longitude, temperature, humidity, wind_speed, uv_index))
     conn.commit()
     conn.close()
 
