@@ -70,7 +70,7 @@ def get_saved_weather():
 
 def export_weather_data_to_csv():
     data = get_saved_weather()
-    with open("weather_data.csv", "w", newline="", encoding="utf-8") as file:
+    with open("v1.2/weather_data.csv", "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["ID", "City", "Latitude", "Longitude", "Temperature", "Humidity", "Wind Speed", "UV Index", "Timestamp"])
         writer.writerows(data)
