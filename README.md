@@ -6,6 +6,11 @@ pip install flask</code>
 
 <h1>Version 1.1</h1>
 Features</b>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
 <h1>Version 1.2</h1>
 Features:
 - 
