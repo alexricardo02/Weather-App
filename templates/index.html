@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetterdaten</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gespeicherte Wetterdaten</h1>
+    <table>
+        <tr>
+            <th>Stadt</th>
+            <th>Breite</th>
+            <th>Länge</th>
+            <th>Temperatur (°C)</th>
+            <th>Luftfeuchtigkeit</th>
+            <th>Windgeschwindigkeit</th>
+            <th>UV-Index</th>
+            <th>Zeitstempel</th>
+        </tr>
+        {% for row in weather_data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
