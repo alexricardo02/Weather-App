@@ -13,4 +13,8 @@ Features:
 </ul>
 <h1>Version 1.2</h1>
 Features:
-- 
+<ul>
+  <li>Extra weather data</li>
+  <li>Creation of CSV file with Data from the Database</li>
+  <li>Users can input their own coordinates</li>
+</ul>
