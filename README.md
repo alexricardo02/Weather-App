@@ -20,8 +20,6 @@ Features:
 </ul>
 
 <h1>FlaskApp</h1>
-<ul>
-  <p>
-  This small Flask Application is used for display the data of the database using html code.
-  </p>
-</ul>
+<p>
+This small Flask Application is used for display the data of the database using html code.
+</p>
