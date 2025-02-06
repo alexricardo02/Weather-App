@@ -3,6 +3,15 @@ import json
 from typing import Optional
 import sqlite3
 
+
+'''
+Diese Funktion get_location_name nimmt einen Breiten- und Längengrad 
+als Eingabe, sendet eine GET-Anfrage an die OpenStreetMap Nominatim API, 
+um die Koordinaten rückwärts zu kodieren, und gibt den Namen der Stadt, 
+des Dorfes oder des Weilers an diesem Ort zurück. Wenn die Anforderung 
+erfolgreich ist (Statuscode 200) und die Antwort Adressdaten enthält, 
+wird der Ortsname zurückgegeben; andernfalls wird eine Fehlermeldung ausgegeben.
+'''
 def get_location_name(latitude: float, longitude: float) -> str:
 
     BASE_URL = "https://nominatim.openstreetmap.org/"
@@ -61,6 +70,15 @@ def get_location_name(latitude: float, longitude: float) -> str:
 #         print("Fehler beim Abrufen der Wetterdaten")
 #         return None
 
+
+'''
+Diese Python-Funktion get_temperature ruft die aktuelle 
+Temperatur für eine Liste von Orten aus der Open-Meteo-API 
+ab und speichert die Daten in einer Liste, wobei sie auch 
+in einer Datenbank gespeichert wird. Sie gibt eine Liste 
+von Wörterbüchern zurück, die den Städtenamen, den Breitengrad, 
+den Längengrad und die Temperatur für jeden Ort enthalten.
+'''
 def get_temperature(locations: list):
 
     BASE_URL = "https://api.open-meteo.com/"
@@ -100,7 +118,6 @@ def get_temperature(locations: list):
     return temperature_storage
 
 def create_database():
-
     # Verbindung zur Datenbank herstellen (erstellt Datei falls nicht vorhanden)
     conn = sqlite3.connect("wetter.db")
     # Cursor erstellen (ein spezielles Objekt, das SQL-Befehle ausführt)
@@ -117,6 +134,13 @@ def create_database():
         )               
     """)
 
+
+'''
+Diese Funktion speichert Wetterdaten in einer SQLite-Datenbank. 
+Sie verbindet sich mit der Datenbank „wetter.db“, fügt die angegebene Stadt, 
+den Breitengrad, den Längengrad und die Temperatur in die Tabelle „wetterdaten“ 
+ein und schließt dann die Verbindung.
+'''
 def save_weather_data_to_db(city, latitude, longitude, temperature):
 
     conn = sqlite3.connect("wetter.db")
@@ -125,11 +149,16 @@ def save_weather_data_to_db(city, latitude, longitude, temperature):
     cursor.execute("""
         INSERT INTO wetterdaten (city, latitude, longitude, temperature)
         VALUES (?, ?, ?, ?)               
-    """, (city, latitude, longitude, temperature))
+    """, (city.encode('utf-8').decode('utf-8'), latitude, longitude, temperature))
 
     conn.commit()
     conn.close()
 
+'''
+Diese Funktion stellt eine Verbindung zu einer SQLite-Datenbank namens 
+„wetter.db“ her, ruft alle Wetterdaten aus der Tabelle „wetterdaten“ ab, 
+sortiert sie in absteigender Reihenfolge nach Zeitstempel und gibt die Daten zurück.
+'''
 def get_saved_weather():
     conn = sqlite3.connect("wetter.db")
     cursor = conn.cursor()
@@ -140,6 +169,14 @@ def get_saved_weather():
 
     return data
 
+
+'''
+Dieses Codeschnipsel ist der Haupteinstiegspunkt des Skripts. 
+Es erstellt eine Liste von Orten, erstellt eine Datenbank, 
+ruft die Temperatur für jeden Ort ab, speichert die Daten in 
+der Datenbank und gibt die gespeicherten Wetterdaten dann in 
+einer formatierten JSON-Ausgabe aus.
+'''
 if __name__ == "__main__":
 
     locations = [
